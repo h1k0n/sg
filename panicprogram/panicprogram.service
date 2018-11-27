@@ -1,0 +1,12 @@
+[Unit]
+Description=OBC panicprogram
+
+[Service]
+Type=simple
+WorkingDirectory=/tmp/panicprogram
+ExecStart=/tmp/panicprogram
+ExecStop=/bin/kill -HUP $MAINPID
+Restart=failure
+
+[Install]
+WantedBy=multi-user.target
