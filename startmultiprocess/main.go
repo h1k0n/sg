@@ -17,7 +17,7 @@ func main() {
 	}
 	defer f.Close()
 	log.SetOutput(f)
-	log.Println("This is a test log entry", os.Getppid(), os.Getpid())
+	log.Println("This is a test log entry", os.Getpid(), os.Getppid())
 	//bussiness
 	pc := flag.Int("c", 0, "process count")
 	process := flag.Int("p", 0, "process flag")
@@ -58,7 +58,7 @@ func main() {
 				log.Println("os.StartProcess()", err)
 				os.Exit(1)
 			}
-			process.Release()
+			go process.Wait()
 		}
 		signals := make(chan os.Signal, 4)
 		//在不handle SIGINT的情况下，kill -SIGINT会导致整个程序退出
@@ -75,8 +75,14 @@ func main() {
 		i = *process
 	}
 	if *process%2 == 1 {
+		//                log.Println("=",*process, os.Getpid(),os.Getppid())
+		//               p,_:=os.FindProcess(os.Getpid()) //ppid,shell所在进程
+		//              p.Signal(syscall.SIGINT)
 		log.Println("odd process exit", *process)
-		os.Exit(1)
+		//                time.Sleep(30*time.Second)
+		//syscall.Kill(syscall.Getppid(), syscall.SIGINT)
+		//               time.Sleep(time.Second)
+		return
 	}
 	for {
 		log.Println(os.Getpid(), i)
