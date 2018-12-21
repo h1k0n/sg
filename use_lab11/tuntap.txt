@@ -1,0 +1,47 @@
+./uselab11 tun tun1
+ip addr add 10.1.0.10/24 dev tun1
+ip link set dev tun1 up
+
+ping -c1 -b 10.1.0.255
+
+tun1: flags=4305<UP,POINTOPOINT,RUNNING,NOARP,MULTICAST>  mtu 1500
+        inet 10.1.0.10  netmask 255.255.255.0  destination 10.1.0.10
+        inet6 fe80::750d:5558:2a2e:a407  prefixlen 64  scopeid 0x20<link>
+        unspec 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  txqueuelen 500  (UNSPEC)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 5  bytes 388 (388.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+./uselab11 tap tap1
+ip addr add 10.1.0.10/24 dev tap1
+ip link set dev tap1 up
+
+ping -c1 -b 10.1.0.255
+
+tap1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.1.0.10  netmask 255.255.255.0  broadcast 0.0.0.0
+        inet6 fe80::6c35:1ff:fef6:805b  prefixlen 64  scopeid 0x20<link>
+        ether 6e:35:01:f6:80:5b  txqueuelen 1000  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 8  bytes 844 (844.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+		
+		
+		
+./usewater
+
+ip addr add 10.1.0.10/24 dev O_O
+ip link set dev O_O up
+
+ping -c1 -b 10.1.0.255
+
+O_O: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.1.0.10  netmask 255.255.255.0  broadcast 0.0.0.0
+        inet6 fe80::d464:e3ff:fe2d:1132  prefixlen 64  scopeid 0x20<link>
+        ether d6:64:e3:2d:11:32  txqueuelen 1000  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 8  bytes 844 (844.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0

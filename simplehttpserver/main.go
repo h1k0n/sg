@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"net/http"
 )
@@ -13,6 +14,8 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	listenAddress := flag.String("addr", ":8090", "listen address")
+	flag.Parse()
 	http.HandleFunc("/", handler)
-	http.ListenAndServe(":8090", nil)
+	http.ListenAndServe(*listenAddress, nil)
 }
